@@ -2,11 +2,10 @@
   "name": "tumblr-auth",
   "version": "1.0.0",
   "description": "Simple command line application to get Tumblr OAuth2 tokens",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/authenticate.js",
+  "types": "lib/authenticate.d.ts",
   "scripts": {
     "build": "tsc --build",
-    "clean": "tsc --build --clean",
     "prepack": "tsc",
     "start": "node lib/index.js"
   },

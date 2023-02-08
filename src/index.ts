@@ -1,4 +1,4 @@
-import authenticate from "./authenticate.js";
+import { beginAuth } from "./authenticate.js";
 import "dotenv/config";
 
 if (!process.env.CONSUMER_ID || !process.env.CONSUMER_SECRET) {
@@ -8,7 +8,7 @@ if (!process.env.CONSUMER_ID || !process.env.CONSUMER_SECRET) {
 
 console.log(
 	"Please visit the following URL: " +
-		authenticate(
+		beginAuth(
 			process.env.CONSUMER_ID,
 			process.env.CONSUMER_SECRET,
 			"basic write",

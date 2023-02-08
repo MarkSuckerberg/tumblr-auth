@@ -21,7 +21,7 @@ export interface AuthData {
  * @returns The URL to redirect the user to
  * @example console.log("Please visit the following URL: " + beginAuth( process.env.CONSUMER_ID, process.env.CONSUMER_SECRET, "basic write", "http://localhost:80/", 80, data => { console.log(data); }));
  */
-export default function beginAuth(
+export function beginAuth(
 	consumerID: string,
 	consumerSecret: string,
 	scopes: string = "basic",
