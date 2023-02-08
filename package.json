@@ -1,0 +1,27 @@
+{
+  "name": "tumblr-auth",
+  "version": "1.0.0",
+  "description": "Simple command line application to get Tumblr OAuth2 tokens",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepack": "tsc",
+	"build": "tsc",
+    "start": "node lib/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "http": "^0.0.1-security",
+    "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+	"@types/node-fetch": "^2.6.2",
+    "@types/node": "^18.13.0",
+    "typescript": "^3.7.2"
+  },
+  "type": "module"
+}
