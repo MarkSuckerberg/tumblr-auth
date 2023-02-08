@@ -5,22 +5,32 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
     "prepack": "tsc",
-	"build": "tsc",
     "start": "node lib/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkSuckerberg/tumblr-auth.git"
+  },
+  "keywords": [
+    "tumblr",
+    "oauth",
+    "oauth2",
+    "auth",
+    "typescript"
+  ],
+  "author": "Mark Suckerberg",
   "license": "MIT",
   "dependencies": {
-    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "http": "^0.0.1-security",
     "node-fetch": "^3.3.0"
   },
   "devDependencies": {
-	"@types/node-fetch": "^2.6.2",
-    "@types/node": "^18.13.0",
+    "@types/node": "18.11.18",
+    "@types/node-fetch": "^2.6.2",
     "typescript": "^3.7.2"
   },
   "type": "module"
