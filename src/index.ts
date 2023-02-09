@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { beginAuth } from "./authenticate.js";
 import "dotenv/config";
 
