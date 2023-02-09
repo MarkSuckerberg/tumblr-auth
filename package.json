@@ -25,9 +25,12 @@
 	"dependencies": {
 		"dotenv": "^16.0.3",
 		"http": "^0.0.1-security",
-		"node-fetch": "^3.3.0"
+		"minimist": "^1.2.8",
+		"node-fetch": "^3.3.0",
+		"open": "^8.4.1"
 	},
 	"devDependencies": {
+		"@types/minimist": "^1.2.2",
 		"@types/node": "18.11.18",
 		"@types/node-fetch": "^2.6.2",
 		"typescript": "^3.7.2"
