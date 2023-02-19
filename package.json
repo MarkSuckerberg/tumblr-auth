@@ -9,10 +9,7 @@
 		"prepack": "tsc --build --clean && tsc --build",
 		"start": "node lib/index.js"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/MarkSuckerberg/typeble-auth.git"
-	},
+	"repository": "github:MarkSuckerberg/typeble-auth",
 	"keywords": [
 		"tumblr",
 		"oauth",
@@ -20,8 +17,11 @@
 		"auth",
 		"typescript"
 	],
-	"author": "Mark Suckerberg",
-	"license": "MIT",
+	"author": "Mark Suckerberg <mark@suckerberg.gay> (https://suckerberg.gay)",
+	"funding": {
+		"type": "ko-fi",
+		"url": "https://ko-fi.com/marksuckerberg"
+	},
 	"dependencies": {
 		"dotenv": "^16.0.3",
 		"http": "^0.0.1-security",
