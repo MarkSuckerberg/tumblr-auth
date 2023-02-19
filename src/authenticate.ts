@@ -12,11 +12,11 @@ export interface AuthData {
 
 /**
  * Begin the process of authenticating a user. This will start a server on the specified port and return the URL to redirect the user to
- * @param consumerID The consumer ID of your tumblr app
- * @param consumerSecret The consumer secret of your tumblr app
+ * @param consumerID The consumer ID of your Tumblr app
+ * @param consumerSecret The consumer secret of your Tumblr app
  * @param scopes The scopes to request, separated by spaces. Defaults to "basic". Any combination of basic, write, and offline_access.
- * @param redirectURI The redirect URI of your app (must be the same as the one you set in the tumblr developer dashboard)
- * @param port The port to listen on (tumblr doesn't seem to pass the port in the redirect URI, so stick to 80 or 443)
+ * @param redirectURI The redirect URI of your app (must be the same as the one you set in the Tumblr developer dashboard)
+ * @param port The port to listen on (Tumblr doesn't seem to pass the port in the redirect URI, so stick to 80 or 443)
  * @param onSuccess A callback function to run when the user has successfully authenticated
  * @returns The URL to redirect the user to to begin the authentication process
  * @example console.log("Please visit the following URL: " + beginAuth(process.env.CONSUMER_ID, process.env.CONSUMER_SECRET, "basic write", "http://localhost:80/", 80, data => { console.log(data); });
@@ -35,7 +35,7 @@ export default function beginAuth(
 }
 
 /**
- * Start the server to listen for the redirect from tumblr
+ * Start the server to listen for the redirect from Tumblr
  * @param consumerID The consumer ID of your app
  * @param consumerSecret The consumer secret of your app
  * @param state A random string to prevent CSRF attacks (should be the same as the one used in getAuthURL)
@@ -66,7 +66,7 @@ function startServer(
 			res.end("Error: Invalid response.");
 			httpServer.close();
 		}
-	}).listen(port);
+	}).listen(port, "127.0.0.1");
 }
 
 /**
@@ -95,11 +95,11 @@ function getAuthURL(
 }
 
 /**
- * Get an access token from tumblr using the user's access code
+ * Get an access token from Tumblr using the user's access code
  * @param consumerID The consumer ID of your app
  * @param consumerSecret The consumer secret of your app
- * @param accessCode The access code returned by tumblr
- * @returns The access token response from tumblr
+ * @param accessCode The access code returned by Tumblr
+ * @returns The access token response from Tumblr
  */
 async function getAccessToken(consumerID: string, consumerSecret: string, accessCode: string) {
 	const response = await fetch("https://api.tumblr.com/v2/oauth2/token", {
@@ -107,7 +107,7 @@ async function getAccessToken(consumerID: string, consumerSecret: string, access
 		headers: {
 			"Content-Type": "application/json",
 			"Accept": "application/json",
-			"User-Agent": "TumblrBotKill/0.0.1",
+			"User-Agent": "Typeble-Auth/1.0.0",
 		},
 		body: JSON.stringify({
 			grant_type: "authorization_code",

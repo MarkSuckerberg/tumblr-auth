@@ -1,17 +1,17 @@
 {
-	"name": "tumblr-auth",
+	"name": "typeble-auth",
 	"version": "1.0.0",
 	"description": "Simple command line application to get Tumblr OAuth2 tokens",
 	"main": "lib/authenticate.js",
 	"types": "lib/authenticate.d.ts",
 	"scripts": {
 		"build": "tsc --build",
-		"prepack": "tsc",
+		"prepack": "tsc --build --clean && tsc --build",
 		"start": "node lib/index.js"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/MarkSuckerberg/tumblr-auth.git"
+		"url": "git+https://github.com/MarkSuckerberg/typeble-auth.git"
 	},
 	"keywords": [
 		"tumblr",
