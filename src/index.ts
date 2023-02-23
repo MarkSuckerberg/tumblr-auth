@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 import typebleAuth from "./authenticate.js";
+import { refreshTokenAuth } from "./authenticate.js";
 import open from "open";
 import "dotenv/config";
 import minimist from "minimist";
 
 const argv = minimist(process.argv.slice(2), {
 	boolean: true,
-	string: ["scopes", "url"],
-	alias: { h: "help", u: "url", p: "port", w: "write", o: "offline", j: "json" },
+	string: ["url", "refresh"],
+	alias: { h: "help", u: "url", p: "port", w: "write", o: "offline", j: "json", r: "refresh" },
 });
 
 if (!process.env.CONSUMER_ID || !process.env.CONSUMER_SECRET) {
@@ -25,24 +26,31 @@ if (argv.help) {
 	console.log("  -w, --write    Request the write scope");
 	console.log("  -o, --offline  Request the offline_access scope");
 	console.log("  -j, --json     Output the full JSON response instead of just the access token");
-	console.log("  -h --help      Show this help message");
-	console.log(JSON.stringify(process.argv, null, 2));
+	console.log("  -h, --help     Show this help message");
+	console.log("  -r, --refresh  Get a new access token using a refresh token");
 	process.exit(0);
 }
 
 const port = argv.port || 80;
 const redirectURI = argv.url || "http://localhost:80/";
 const scopes = "basic" + (argv.write ? " write" : "") + (argv.offline ? " offline_access" : "");
+const refreshToken = argv.refresh;
 
-open(
-	typebleAuth(
-		process.env.CONSUMER_ID,
-		process.env.CONSUMER_SECRET,
-		scopes,
-		redirectURI,
-		port,
-		data => {
-			console.log(argv.json ? data : data.access_token);
-		}
-	)
-);
+if (refreshToken) {
+	refreshTokenAuth(process.env.CONSUMER_ID, process.env.CONSUMER_SECRET, refreshToken, data => {
+		console.log(argv.json ? data : data.access_token);
+	});
+} else {
+	open(
+		typebleAuth(
+			process.env.CONSUMER_ID,
+			process.env.CONSUMER_SECRET,
+			scopes,
+			redirectURI,
+			port,
+			data => {
+				console.log(argv.json ? data : data.access_token);
+			}
+		)
+	);
+}
