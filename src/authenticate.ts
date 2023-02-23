@@ -1,5 +1,4 @@
 import { createServer } from "http";
-import fetch from "node-fetch";
 
 export interface AuthData {
 	access_token: string;

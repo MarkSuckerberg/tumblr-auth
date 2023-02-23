@@ -26,7 +26,6 @@
 		"dotenv": "^16.0.3",
 		"http": "^0.0.1-security",
 		"minimist": "^1.2.8",
-		"node-fetch": "^3.3.0",
 		"open": "^8.4.1"
 	},
 	"devDependencies": {
