@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com
+                # Rename package name to include scope for GitHub Packages
+      - run: |
+          sed -i "s/\"name\": \"${{ github.event.repository.name }}\"/\"name\": \"@${{ github.repository_owner }}\/${{ github.event.repository.name }}\"/" package.json
       - run: npm ci
       - run: npm publish
         env:
