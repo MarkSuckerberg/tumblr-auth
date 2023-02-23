@@ -35,6 +35,44 @@ export default function beginAuth(
 }
 
 /**
+ * Get a new token using a refresh token. Doesn't require user interaction.
+ * @param consumerID The consumer ID of your Tumblr app
+ * @param consumerSecret The consumer secret of your Tumblr app
+ * @param refreshToken The refresh token to use to get a new access token
+ * @param onSuccess A callback function to run when the user has successfully authenticated
+ */
+export function refreshTokenAuth(
+	consumerID: string,
+	consumerSecret: string,
+	refreshToken: string,
+	onSuccess: (data: AuthData) => void = () => {}
+) {
+	fetch("https://api.tumblr.com/v2/oauth2/token", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json",
+			"User-Agent": "Typeble-Auth/1.1.0",
+		},
+		body: JSON.stringify({
+			grant_type: "refresh_token",
+			refresh_token: refreshToken,
+			client_id: consumerID,
+			client_secret: consumerSecret,
+		}),
+	}).then(async res => {
+		if (!res.ok) {
+			throw new Error(
+				`Failed to get new token: ${res.status} ${res.statusText} ${await res.text()}`
+			);
+		}
+		const data: any = await res.json();
+
+		onSuccess(data);
+	});
+}
+
+/**
  * Start the server to listen for the redirect from Tumblr
  * @param consumerID The consumer ID of your app
  * @param consumerSecret The consumer secret of your app
@@ -107,7 +145,7 @@ async function getAccessToken(consumerID: string, consumerSecret: string, access
 		headers: {
 			"Content-Type": "application/json",
 			"Accept": "application/json",
-			"User-Agent": "Typeble-Auth/1.0.0",
+			"User-Agent": "Typeble-Auth/1.1.0",
 		},
 		body: JSON.stringify({
 			grant_type: "authorization_code",
