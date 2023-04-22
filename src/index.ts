@@ -20,9 +20,9 @@ if (argv.help) {
 	console.log("Usage: npx typeble-auth [options]");
 	console.log("Options:");
 	console.log(
-		"  -u, --url      The url to redirect to in the OAuth request (default: http://localhost:80/)"
+		"  -u, --url      The url to redirect to in the OAuth request (default: http://localhost:8787/)"
 	);
-	console.log("  -p, --port     The port to listen on (default: 80)");
+	console.log("  -p, --port     The port to listen on (default: 8787)");
 	console.log("  -w, --write    Request the write scope");
 	console.log("  -o, --offline  Request the offline_access scope");
 	console.log("  -j, --json     Output the full JSON response instead of just the access token");
@@ -31,8 +31,8 @@ if (argv.help) {
 	process.exit(0);
 }
 
-const port = argv.port || 80;
-const redirectURI = argv.url || "http://localhost:80/";
+const port = argv.port || 8787;
+const redirectURI = argv.url || "http://localhost:8787/";
 const scopes = "basic" + (argv.write ? " write" : "") + (argv.offline ? " offline_access" : "");
 const refreshToken = argv.refresh;
 
